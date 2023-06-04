@@ -54,6 +54,7 @@ module.exports = {
         letterWidth: "200px",
         letterLandScapeWidth: "300px",
         buttonContainerWidth: "200px",
+        buttonWidth: "100px",
       },
       height: {
         letterPageHeight: "300px",

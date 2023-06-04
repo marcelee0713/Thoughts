@@ -3,7 +3,7 @@ import { FaGithub } from "react-icons/fa";
 
 export default function AboutPage() {
   return (
-    <div className="h-full flex flex-col justify-center  py-2">
+    <div className="h-full flex flex-col justify-center py-2">
       <div className="h-full flex gap-16 justify-center items-center px-10 flex-1">
         <Image
           src={"/LateAtNight.svg"}

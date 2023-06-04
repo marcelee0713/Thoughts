@@ -18,7 +18,7 @@ export default function Home() {
           </h1>
           <div className="flex justify-between gap-4 text-secondary mb-3 w-buttonContainerWidth dark:text-primary font-bold">
             <Link
-              href={"/"}
+              href={"/password"}
               className="animate-animfadeLeftSide flex-1 bg-accent dark:bg-secondary text-center p-3 shadow-leftButtonShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:bg-primary dark:hover:bg-accent dark:hover:text-secondary"
             >
               View

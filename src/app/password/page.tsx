@@ -10,23 +10,29 @@ import { PostUser } from "@/models/post-user";
 export default function PasswordPage() {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const query = formData.get("query")?.toString().trim();
 
-    console.log(query);
     if (query) {
       try {
         setIsLoading(true);
         setHasError(false);
 
-        const response = await fetch("api/password/search?query=" + query);
+        const response = await fetch("/api/password?query=" + query);
         const user: PostUser = await response.json();
+
+        if (!user.password) {
+          throw new Error("Error, doesn't exist");
+        }
+        // TODO: Do a redirect to the PeoplesThoughtsPage
       } catch (e) {
+        setHasError(true);
       } finally {
+        setIsLoading(false);
       }
     } else {
       return;
@@ -58,10 +64,16 @@ export default function PasswordPage() {
         {hasError && (
           <div className="w-full flex flex-col items-center justify-center bg-accent text-secondary p-4 h-letterPageHeight dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-colors duration-300">
             <BsExclamationTriangleFill size={50} />
-            <div className="flex flex-col gap-1 items-center">
-              <div>
-                Something <strong>went wrong!</strong>
+            <div className="flex flex-col gap-2 items-center">
+              <div className="flex flex-col items-center">
+                <div>
+                  <strong>Error</strong>
+                </div>
+                <div>
+                  Post <strong>does not exist!</strong>
+                </div>
               </div>
+
               <button
                 onClick={() => {
                   setIsLoading(false);

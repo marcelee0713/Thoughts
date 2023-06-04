@@ -1,9 +1,10 @@
 "use client";
 
 //prettier-ignore
-import {createContext, useState, ReactNode,} from "react"
+import {createContext, useState, ReactNode, useContext} from "react"
+import { ThemeProvider } from "next-themes";
 
-type Crendetial = null | { password: string };
+export type Crendetial = null | { password: string };
 type CredentialTypes = {
   pass: Crendetial;
   setPassword: (s: string) => void;
@@ -30,10 +31,14 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
           // If he did
           // setPass({ password: "password" });
           //If he didn't return an error
+
+          setPass({ password: p });
         },
       }}
     >
-      {children}
+      <ThemeProvider attribute="class">{children}</ThemeProvider>
     </UserContext.Provider>
   );
 };
+
+export const useGlobalContext = () => useContext(UserContext);

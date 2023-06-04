@@ -1,7 +1,8 @@
 import "./globals.css";
-import { Inter, Open_Sans } from "next/font/google";
+import { Open_Sans } from "next/font/google";
+import { UserProvider } from "./context/UserContext";
+import ThemeSwitcher from "./ThemeSwitcher";
 
-const inter = Inter({ subsets: ["latin"] });
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,8 +16,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={openSans.className}>{children}</body>
+    <html
+      lang="en"
+      suppressHydrationWarning={true}
+      className="h-screen max-w-full"
+    >
+      <body className={`${openSans.className} dark:bg-primary h-full`}>
+        <UserProvider>
+          <ThemeSwitcher />
+          <main className="h-full">{children}</main>
+        </UserProvider>
+      </body>
     </html>
   );
 }

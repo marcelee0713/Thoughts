@@ -2,15 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { BsExclamationTriangleFill } from "react-icons/bs";
+import { AiFillCheckCircle } from "react-icons/ai";
 import { PostUser } from "@/models/post-user";
+import { useGlobalContext } from "../context/UserContext";
+import { useRouter } from "next/navigation";
 
 export default function PasswordPage() {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const router = useRouter();
+
+  const { setPassword } = useGlobalContext();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,7 +35,10 @@ export default function PasswordPage() {
         if (!user.password) {
           throw new Error("Error, doesn't exist");
         }
-        // TODO: Do a redirect to the PeoplesThoughtsPage
+
+        setPassword(user.password);
+        setSuccess(true);
+        setTimeout(() => router.replace("/thoughts"), 2000);
       } catch (e) {
         setHasError(true);
       } finally {
@@ -61,6 +71,18 @@ export default function PasswordPage() {
           </div>
         )}
 
+        {success && (
+          <div className="w-full flex flex-col items-center justify-center bg-accent text-secondary p-4 h-letterPageHeight dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-colors duration-300">
+            <AiFillCheckCircle size={50} />
+            <div className="flex flex-col gap-2 items-center">
+              <div>
+                <strong>Success</strong>
+              </div>
+              <div>Redirecting you to people’s thoughts...</div>
+            </div>
+          </div>
+        )}
+
         {hasError && (
           <div className="w-full flex flex-col items-center justify-center bg-accent text-secondary p-4 h-letterPageHeight dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-colors duration-300">
             <BsExclamationTriangleFill size={50} />
@@ -88,7 +110,7 @@ export default function PasswordPage() {
           </div>
         )}
 
-        {!hasError && !isLoading && (
+        {!hasError && !isLoading && !success && (
           <div className="animate-animfadeRightSide w-full flex flex-col bg-accent text-secondary p-4 h-letterPageHeight dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-colors duration-300">
             <div className="flex-1 flex flex-col gap-5">
               <div className="flex flex-col gap-2">
@@ -104,7 +126,7 @@ export default function PasswordPage() {
                   <input
                     name="query"
                     type={!visible ? "password" : "text"}
-                    className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary`}
+                    className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
                     maxLength={20}
                   ></input>
                   {!visible ? (
@@ -130,7 +152,7 @@ export default function PasswordPage() {
                 </button>
               </form>
             </div>
-            <Link href="/" className="self-center hover:underline">
+            <Link href="/thoughts" className="self-center hover:underline">
               No, I don’t have one
             </Link>
           </div>

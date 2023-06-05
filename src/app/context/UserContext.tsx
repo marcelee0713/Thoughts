@@ -7,12 +7,12 @@ import { ThemeProvider } from "next-themes";
 export type Crendetial = null | { password: string };
 type CredentialTypes = {
   pass: Crendetial;
-  setPassword: (s: string) => void;
+  setPassword: (password: string) => void;
 };
 
 export const UserContext = createContext<CredentialTypes>({
   pass: null,
-  setPassword: (s: string) => {},
+  setPassword: (password: string) => {},
 });
 
 interface UserProviderProps {
@@ -26,12 +26,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       value={{
         pass,
         setPassword: async (p: string) => {
-          // TODO: Make an API Route Handler for this
-          // Check if the "password" does exist in the db
-          // If he did
-          // setPass({ password: "password" });
-          //If he didn't return an error
-
           setPass({ password: p });
         },
       }}

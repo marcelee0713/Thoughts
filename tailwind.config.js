@@ -66,6 +66,9 @@ module.exports = {
       rotate: {
         360: "360deg",
       },
+      gridTemplateColumns: {
+        myGridTemplate: "repeat(auto-fit, minmax(200px, 1fr))",
+      },
     },
     screens: {
       "2xl": { max: "1535px" },

@@ -3,3 +3,10 @@ export type PostUser = {
   password: string;
   id: string;
 };
+
+export type PostType = {
+  nickname: string | null;
+  password: string;
+  id: string;
+  content: string;
+};

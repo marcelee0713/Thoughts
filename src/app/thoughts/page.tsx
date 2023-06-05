@@ -1,15 +1,17 @@
 import { ThoughtBox } from "@/components/thoughtbox";
 import { PostType } from "@/models/post-user";
-import { ButtonLS } from "@/components/button";
 import Image from "next/image";
 import { prisma } from "@/db";
+import Link from "next/link";
+
+export const revalidate = 0;
 
 export default async function ThoughtsPage() {
   const posts: PostType[] = await prisma.post.findMany().catch((e) => {
     throw Error("Something went wrong! Error message: " + e);
   });
 
-  let delayIncrement = 200;
+  let delayIncrement = 75;
 
   return (
     <div className="h-full flex flex-col px-20 py-10 gap-10">
@@ -23,12 +25,12 @@ export default async function ThoughtsPage() {
           </div>
           <div className="text-sm">Would you like to write and share one?</div>
         </div>
-        <ButtonLS
-          callback={async () => {
-            "use server";
-          }}
-          text="Write"
-        />
+        <Link
+          href={"/write"}
+          className="w-buttonWidth font-bold text-secondary dark:text-primary bg-accent dark:bg-secondary text-center p-3 shadow-leftButtonShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:text-secondary hover:bg-primary dark:hover:bg-accent dark:hover:text-secondary"
+        >
+          Write
+        </Link>
       </div>
 
       <div className="flex-1 grid grid-cols-myGridTemplate gap-10">
@@ -36,14 +38,11 @@ export default async function ThoughtsPage() {
           posts.map((post, i) => (
             <ThoughtBox
               key={i}
-              deleteCB={async () => {
-                "use server";
-              }}
               editCB={async () => {
                 "use server";
               }}
               post={post}
-              animDelay={(delayIncrement += 200).toString()}
+              animDelay={(delayIncrement += 75).toString()}
             />
           ))
         ) : (

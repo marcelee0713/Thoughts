@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { BsExclamationTriangleFill } from "react-icons/bs";
 import { AiFillCheckCircle } from "react-icons/ai";
@@ -48,6 +48,7 @@ export default function PasswordPage() {
       return;
     }
   }
+
   return (
     <div className="h-full w-full justify-center flex flex-col py-2">
       <div className="h-fit w-full items-center flex gap-16 px-20">

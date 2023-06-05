@@ -10,3 +10,9 @@ export type PostType = {
   id: string;
   content: string;
 };
+
+export type PostReqType = {
+  content: string | undefined;
+  password: string | undefined;
+  nickname: string | undefined;
+};

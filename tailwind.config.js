@@ -69,6 +69,11 @@ module.exports = {
       gridTemplateColumns: {
         myGridTemplate: "repeat(auto-fit, minmax(200px, 1fr))",
       },
+      colors: {
+        primary: "#22293C",
+        secondary: "#FFFFFF",
+        accent: "#364261",
+      },
     },
     screens: {
       "2xl": { max: "1535px" },
@@ -82,11 +87,6 @@ module.exports = {
       sm: { max: "639px" },
 
       xsm: { max: "600px" },
-    },
-    colors: {
-      primary: "#22293C",
-      secondary: "#FFFFFF",
-      accent: "#364261",
     },
   },
   plugins: [],

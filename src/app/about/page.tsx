@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa";
 export default function AboutPage() {
   return (
     <div className="h-full flex flex-col justify-center py-2">
-      <div className="h-full flex gap-16 justify-center items-center px-10 flex-1">
+      <div className="h-full flex gap-16 justify-center items-center px-10 flex-1 md:p-10 sm:p-5 lg:flex-col">
         <Image
           src={"/LateAtNight.svg"}
           alt="Staring at the window"
@@ -14,16 +14,16 @@ export default function AboutPage() {
         />
 
         <div className="animate-animfadeRightSide flex flex-col bg-accent text-secondary gap-2 p-4 h-letterPageHeight dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:bg-primary dark:hover:bg-accent dark:hover:text-secondary">
-          <div className="text-3xl">
+          <div className="text-3xl md:text-xl sm:text-base">
             What is this all <strong>about?</strong>
           </div>
           <div className="flex flex-col gap-3">
-            <div className="text-xl">
+            <div className="text-xl md:text-base sm:text-sm ">
               First of all it’s because I want to <strong>learn</strong> and{" "}
               <strong>apply</strong> on what I studied. But I also do have a
               thought in my mind that I really need to let it out.
             </div>
-            <div className="text-xl">
+            <div className="text-xl md:text-base sm:text-sm">
               And I want to share it with you. We all have those thoughts that
               we need to <strong>let it all out</strong>.
             </div>

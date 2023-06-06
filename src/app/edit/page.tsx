@@ -84,8 +84,8 @@ export default function Page() {
   }
 
   return (
-    <div className="h-full w-full justify-center flex flex-col py-2">
-      <div className="h-fit w-full items-center flex gap-16 px-20">
+    <div className="h-full w-full justify-center flex flex-col">
+      <div className="h-fit w-full items-center flex gap-16 px-20 md:gap-8 sm:gap-4 lg:flex-col md:px-10 sm:px-5">
         <Image
           src={"/CountingStars.svg"}
           alt="2 guys staring at the stars"
@@ -146,26 +146,28 @@ export default function Page() {
         {!hasError && !isLoading && !success && (
           <div className="animate-animfadeRightSide w-full flex flex-col bg-accent text-secondary p-4 dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-colors duration-300">
             <div className="flex-1 flex flex-col gap-5">
-              <div className="text-3xl font-bold">Edit</div>
+              <div className="text-3xl font-bold md:text-xl sm:text-base">
+                Edit
+              </div>
               <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                 <div className="flex flex-col gap-1">
-                  <label>
+                  <label className="md:text-sm">
                     Edit your <strong>nickname?</strong>
                   </label>
                   <input
                     name="nickname"
                     type="text"
-                    className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
+                    className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary md:text-sm`}
                     maxLength={15}
                     defaultValue={currentNickname ? currentNickname : ""}
                   ></input>
-                  <div className="text-secondary opacity-50 text-sm dark:text-primary italic">
+                  <div className="text-secondary opacity-50 text-sm dark:text-primary italic md:text-xs">
                     You can leave this blank again
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <label className="flex gap-1 items-center">
+                  <label className="flex gap-1 items-center md:text-sm">
                     <div>
                       Edit your <strong>password?</strong>
                     </div>
@@ -179,7 +181,7 @@ export default function Page() {
                     <input
                       name="password"
                       type={!visible ? "password" : "text"}
-                      className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
+                      className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary md:text-sm`}
                       minLength={6}
                       maxLength={20}
                       defaultValue={currentPassword ? currentPassword : ""}
@@ -198,7 +200,7 @@ export default function Page() {
                       />
                     )}
                   </div>
-                  <div className="text-secondary opacity-50 text-sm dark:text-primary italic">
+                  <div className="text-secondary opacity-50 text-sm dark:text-primary italic md:text-xs">
                     Again, Do not share this. This is when you can
                     <strong> edit</strong> and <strong>delete</strong> your
                     post.
@@ -207,7 +209,7 @@ export default function Page() {
 
                 <div className="flex flex-col gap-1">
                   <label className="flex gap-1 items-center">
-                    <div className="font-bold">Let it all out</div>
+                    <div className="font-bold md:text-sm">Let it all out</div>
                     <div className="text-xs text-red-400">
                       {showContentErr ? "Input is required!" : ""}
                     </div>
@@ -215,7 +217,7 @@ export default function Page() {
                   <textarea
                     rows={3}
                     name="content"
-                    className={`border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
+                    className={`border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary md:text-sm`}
                     maxLength={1000}
                     defaultValue={currentContent ? currentContent : ""}
                   ></textarea>
@@ -226,7 +228,7 @@ export default function Page() {
 
                 <button
                   type="submit"
-                  className={`self-end w-buttonWidth font-bold text-primary dark:text-secondary bg-secondary dark:bg-accent text-center p-3 shadow-rightButtonShadow shadow-primary drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:text-secondary hover:bg-primary dark:hover:bg-primary dark:hover:text-secondary`}
+                  className={`self-end md:w-20 sm:mb-2 w-buttonWidth font-bold text-primary dark:text-secondary bg-secondary dark:bg-accent text-center p-3 shadow-rightButtonShadow shadow-primary drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:text-secondary hover:bg-primary dark:hover:bg-primary dark:hover:text-secondary`}
                 >
                   Submit
                 </button>
@@ -237,7 +239,7 @@ export default function Page() {
                 router.refresh();
                 router.back();
               }}
-              className="self-center hover:underline cursor-pointer"
+              className="self-center hover:underline cursor-pointer md:text-sm sm:text-xs"
             >
               I’ve changed my mind.
             </div>

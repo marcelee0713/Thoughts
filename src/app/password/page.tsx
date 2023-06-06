@@ -51,7 +51,7 @@ export default function PasswordPage() {
 
   return (
     <div className="h-full w-full justify-center flex flex-col py-2">
-      <div className="h-fit w-full items-center flex gap-16 px-20">
+      <div className="h-fit w-full items-center flex gap-16 px-20 md:p-10 sm:p-5 lg:flex-col">
         <Image
           src={"/PasswordPost.svg"}
           alt="Staring at the window"
@@ -115,10 +115,10 @@ export default function PasswordPage() {
           <div className="animate-animfadeRightSide w-full flex flex-col bg-accent text-secondary p-4 h-letterPageHeight dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-colors duration-300">
             <div className="flex-1 flex flex-col gap-5">
               <div className="flex flex-col gap-2">
-                <div className="text-3xl font-bold">
+                <div className="text-3xl font-bold md:text-xl sm:text-base">
                   Have a password for your posts?
                 </div>
-                <div className="text-xl">
+                <div className="text-xl md:text-base sm:text-sm">
                   So you can edit or delete <strong>your</strong> posts.
                 </div>
               </div>
@@ -127,7 +127,7 @@ export default function PasswordPage() {
                   <input
                     name="query"
                     type={!visible ? "password" : "text"}
-                    className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
+                    className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary md:text-sm sm:text-xs`}
                     maxLength={20}
                   ></input>
                   {!visible ? (
@@ -147,7 +147,7 @@ export default function PasswordPage() {
 
                 <button
                   type="submit"
-                  className={`self-end w-buttonWidth font-bold text-primary dark:text-secondary bg-secondary dark:bg-accent text-center p-3 shadow-rightButtonShadow shadow-primary drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:text-secondary hover:bg-primary dark:hover:bg-primary dark:hover:text-secondary`}
+                  className={`self-end w-buttonWidth sm:w-20 font-bold text-primary md:text-sm sm:text-xs dark:text-secondary bg-secondary dark:bg-accent text-center p-3 shadow-rightButtonShadow shadow-primary drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:text-secondary hover:bg-primary dark:hover:bg-primary dark:hover:text-secondary`}
                 >
                   Submit
                 </button>
@@ -155,7 +155,7 @@ export default function PasswordPage() {
             </div>
             <Link
               href="/thoughts"
-              className="self-center hover:underline"
+              className="self-center hover:underline md:text-sm sm:text-xs"
               onClick={() => setPassword("")}
             >
               No, I don’t have one

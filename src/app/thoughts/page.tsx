@@ -14,20 +14,22 @@ export default async function ThoughtsPage() {
   let delayIncrement = 75;
 
   return (
-    <div className="h-full flex flex-col px-20 py-10 gap-10">
-      <div className="flex flex-col gap-3 animate-animfadeLeftSide">
-        <h1 className="font-bold text-3xl text-primary dark:text-secondary">
+    <div className="h-full flex flex-col px-20 py-10 gap-10 md:px-10 sm:px-5">
+      <div className="flex flex-col gap-3 md:gap-2 sm:gap-1 animate-animfadeLeftSide">
+        <h1 className="font-bold text-3xl text-primary dark:text-secondary sm:text-xl">
           People’s thoughts
         </h1>
         <div className="flex flex-col gap-1 text-primary dark:text-secondary">
-          <div className="text-sm">
+          <div className="text-sm sm:text-xs">
             Where people share their thoughts or even their confessions.
           </div>
-          <div className="text-sm">Would you like to write and share one?</div>
+          <div className="text-sm sm:text-xs">
+            Would you like to write and share one?
+          </div>
         </div>
         <Link
           href={"/write"}
-          className="w-buttonWidth font-bold text-secondary dark:text-primary bg-accent dark:bg-secondary text-center p-3 shadow-leftButtonShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:text-secondary hover:bg-primary dark:hover:bg-accent dark:hover:text-secondary"
+          className="w-buttonWidth sm:text-xs md:w-20 font-bold text-secondary dark:text-primary bg-accent dark:bg-secondary text-center p-3 shadow-leftButtonShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-all duration-300 ease-linear hover:shadow-none hover:text-secondary hover:bg-primary dark:hover:bg-accent dark:hover:text-secondary"
         >
           Write
         </Link>
@@ -51,8 +53,8 @@ export default async function ThoughtsPage() {
               height={400}
               className="animate-animfadeAbove"
             />
-            <div className="animate-animfadeBelow text-primary dark:text-secondary">
-              The post is currently <strong>empty</strong>, like me.
+            <div className="animate-animfadeBelow text-primary dark:text-secondary md:text-sm sm:text-xs">
+              The feed is currently <strong>empty</strong>, like me.
             </div>
           </div>
         )}

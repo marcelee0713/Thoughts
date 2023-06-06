@@ -55,9 +55,12 @@ module.exports = {
         letterLandScapeWidth: "300px",
         buttonContainerWidth: "200px",
         buttonWidth: "100px",
+        letterSmolWidth: "150px",
       },
       height: {
         letterPageHeight: "300px",
+        letterSmolHeight: "200px",
+
         letterLandScapeHeight: "200px",
       },
       maxWidth: {
@@ -80,13 +83,11 @@ module.exports = {
 
       xl: { max: "1279px" },
 
-      lg: { max: "1023px" },
+      lg: { max: "1024px" },
 
-      md: { max: "767px" },
+      md: { max: "700px" },
 
-      sm: { max: "639px" },
-
-      xsm: { max: "600px" },
+      sm: { max: "425px" },
     },
   },
   plugins: [],

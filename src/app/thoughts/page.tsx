@@ -7,7 +7,9 @@ import Link from "next/link";
 export const revalidate = 0;
 
 export default async function ThoughtsPage() {
-  const posts: PostType[] = [];
+  const posts: PostType[] = await prisma.post.findMany().catch((e) => {
+    throw Error("Something went wrong! Error message: " + e);
+  });
 
   let delayIncrement = 75;
 

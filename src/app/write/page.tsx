@@ -9,11 +9,6 @@ import { PostType } from "@/models/post-user";
 import { useGlobalContext } from "../context/UserContext";
 import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Thoughts | Write",
-  description: "Is there something on your mind lately?",
-};
-
 export default function WritePage() {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

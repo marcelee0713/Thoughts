@@ -6,7 +6,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Thoughts | Home",
+  title: "Thoughts",
   description: "Is there something on your mind lately?",
 };
 

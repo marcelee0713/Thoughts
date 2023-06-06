@@ -37,9 +37,9 @@ export default function AboutPage() {
         >
           <FaGithub
             size={30}
-            className="duration-300 ease-in-out group-hover:rotate-360"
+            className="duration-300 ease-in-out group-hover:rotate-360 animate-animfadeLeftSide"
           />
-          <div className="duration-300 ease-in-out group-hover:underline">
+          <div className="duration-300 ease-in-out group-hover:underline animate-animfadeRightSide">
             Marcel
           </div>
         </a>

@@ -38,9 +38,6 @@ export default async function ThoughtsPage() {
           posts.map((post, i) => (
             <ThoughtBox
               key={i}
-              editCB={async () => {
-                "use server";
-              }}
               post={post}
               animDelay={(delayIncrement += 75).toString()}
             />

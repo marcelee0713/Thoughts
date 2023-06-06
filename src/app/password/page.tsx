@@ -17,7 +17,7 @@ export default function PasswordPage() {
   const [success, setSuccess] = useState(false);
   const router = useRouter();
 
-  const { setPassword } = useGlobalContext();
+  const { pass, setPassword } = useGlobalContext();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -153,7 +153,11 @@ export default function PasswordPage() {
                 </button>
               </form>
             </div>
-            <Link href="/thoughts" className="self-center hover:underline">
+            <Link
+              href="/thoughts"
+              className="self-center hover:underline"
+              onClick={() => setPassword("")}
+            >
               No, I don’t have one
             </Link>
           </div>

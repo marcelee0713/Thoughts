@@ -7,10 +7,10 @@ import { BsExclamationTriangleFill, BsTrash3Fill } from "react-icons/bs";
 import { AiFillCheckCircle, AiFillEdit } from "react-icons/ai";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export type ThoughtBoxType = {
   post: PostType;
-  editCB: Function;
   animDelay: string;
 };
 
@@ -22,6 +22,13 @@ export function ThoughtBox(letter: ThoughtBoxType) {
   const [error, setError] = useState(false);
 
   const router = useRouter();
+
+  const post: PostType = {
+    nickname: letter.post.nickname,
+    password: letter.post.password,
+    id: letter.post.id,
+    content: letter.post.content,
+  };
 
   const secretPass = process.env.NEXT_PUBLIC_ADMIN_PASS;
 
@@ -39,22 +46,29 @@ export function ThoughtBox(letter: ThoughtBoxType) {
         {(pass?.password === secretPass ||
           pass?.password === letter.post.password) && (
           <div className="flex gap-2">
-            <AiFillEdit
-              size={15}
-              className="cursor-pointer duration-300 ease-in-out hover:scale-105"
-              onClick={() => letter.editCB()}
-            />
-            <BsTrash3Fill
-              size={15}
-              className="cursor-pointer duration-300 ease-in-out hover:scale-105"
-              onClick={() => {
-                setModal(true);
-              }}
-            />
+            <Link
+              href={{ pathname: `/edit`, query: post }}
+              className="flex items-center justify-center"
+            >
+              <AiFillEdit
+                size={15}
+                className="cursor-pointer duration-300 ease-in-out hover:scale-105"
+              />
+            </Link>
+
+            <div className="flex items-center justify-center">
+              <BsTrash3Fill
+                size={15}
+                className="cursor-pointer duration-300 ease-in-out hover:scale-105 "
+                onClick={() => {
+                  setModal(true);
+                }}
+              />
+            </div>
           </div>
         )}
 
-        <div>
+        <div className="flex-1 text-end">
           by <strong>{letter.post.nickname}</strong>
         </div>
       </div>

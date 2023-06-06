@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -7,9 +6,8 @@ import { BsExclamationTriangleFill } from "react-icons/bs";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { PostType } from "@/models/post-user";
 import { useGlobalContext } from "../context/UserContext";
-import { useRouter } from "next/navigation";
-
-export default function WritePage() {
+import { useRouter, useSearchParams } from "next/navigation";
+export default function Page() {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -19,8 +17,14 @@ export default function WritePage() {
   const [showContentErr, setContentError] = useState(false);
 
   const router = useRouter();
+  const params = useSearchParams();
+  const currentId = params.get("id");
+  const currentNickname = params.get("nickname");
+  const currentContent = params.get("content");
+  const currentPassword = params.get("password");
 
   const { setPassword } = useGlobalContext();
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
@@ -53,6 +57,7 @@ export default function WritePage() {
 
         const response = await fetch("/api/write", {
           body: JSON.stringify({
+            id: currentId,
             content: content,
             nickname: nickname,
             password: password,
@@ -60,7 +65,7 @@ export default function WritePage() {
           headers: {
             "Content-Type": "application/json",
           },
-          method: "POST",
+          method: "PUT",
         });
         const user: PostType = await response.json();
         setPassword(user.password);
@@ -106,7 +111,7 @@ export default function WritePage() {
             <AiFillCheckCircle size={50} />
             <div className="flex flex-col gap-2 items-center">
               <div>
-                <strong>Success</strong>
+                <strong>Edit Success</strong>
               </div>
               <div>Redirecting you back...</div>
             </div>
@@ -141,27 +146,28 @@ export default function WritePage() {
         {!hasError && !isLoading && !success && (
           <div className="animate-animfadeRightSide w-full flex flex-col bg-accent text-secondary p-4 dark:bg-secondary dark:text-primary mb-5  shadow-rightLetterShadow shadow-primary dark:shadow-accent drop-shadow-2xl transition-colors duration-300">
             <div className="flex-1 flex flex-col gap-5">
-              <div className="text-3xl font-bold">Share your thoughts</div>
+              <div className="text-3xl font-bold">Edit</div>
               <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                 <div className="flex flex-col gap-1">
                   <label>
-                    What’s your <strong>nickname?</strong>
+                    Edit your <strong>nickname?</strong>
                   </label>
                   <input
                     name="nickname"
                     type="text"
                     className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
                     maxLength={15}
+                    defaultValue={currentNickname ? currentNickname : ""}
                   ></input>
                   <div className="text-secondary opacity-50 text-sm dark:text-primary italic">
-                    You can leave this blank
+                    You can leave this blank again
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1">
                   <label className="flex gap-1 items-center">
                     <div>
-                      Post <strong>password</strong>
+                      Edit your <strong>password?</strong>
                     </div>
                     <div className="text-xs text-red-400">
                       {passErr
@@ -176,6 +182,7 @@ export default function WritePage() {
                       className={`flex-1 border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
                       minLength={6}
                       maxLength={20}
+                      defaultValue={currentPassword ? currentPassword : ""}
                     ></input>
                     {!visible ? (
                       <FaEyeSlash
@@ -192,7 +199,7 @@ export default function WritePage() {
                     )}
                   </div>
                   <div className="text-secondary opacity-50 text-sm dark:text-primary italic">
-                    Do not share this. This is when you can
+                    Again, Do not share this. This is when you can
                     <strong> edit</strong> and <strong>delete</strong> your
                     post.
                   </div>
@@ -210,10 +217,10 @@ export default function WritePage() {
                     name="content"
                     className={`border border-secondary outline-none bg-accent p-2 dark:bg-secondary dark:border-primary dark:text-primary`}
                     maxLength={1000}
+                    defaultValue={currentContent ? currentContent : ""}
                   ></textarea>
                   <div className="text-secondary opacity-50 text-sm dark:text-primary italic">
-                    You already know the things what to say and what{" "}
-                    <strong>not</strong> to say. It’s 2023
+                    Same information as before. It’s 2023
                   </div>
                 </div>
 

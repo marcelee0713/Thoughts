@@ -6,6 +6,11 @@ import Link from "next/link";
 
 export const revalidate = 0;
 
+export const metadata = {
+  title: "Thoughts | Feed",
+  description: "Is there something on your mind lately?",
+};
+
 export default async function ThoughtsPage() {
   const posts: PostType[] = await prisma.post.findMany().catch((e) => {
     throw Error("Something went wrong! Error message: " + e);

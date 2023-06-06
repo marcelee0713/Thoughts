@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 
+export const metadata = {
+  title: "Thoughts | About",
+  description: "Is there something on your mind lately?",
+};
+
 export default function AboutPage() {
   return (
     <div className="h-full flex flex-col justify-center py-2">

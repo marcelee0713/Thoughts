@@ -10,6 +10,11 @@ import { PostUser } from "@/models/post-user";
 import { useGlobalContext } from "../context/UserContext";
 import { useRouter } from "next/navigation";
 
+export const metadata = {
+  title: "Thoughts | Password",
+  description: "Is there something on your mind lately?",
+};
+
 export default function PasswordPage() {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

@@ -7,6 +7,12 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { PostType } from "@/models/post-user";
 import { useGlobalContext } from "../context/UserContext";
 import { useRouter, useSearchParams } from "next/navigation";
+
+export const metadata = {
+  title: "Thoughts | Edit",
+  description: "Is there something on your mind lately?",
+};
+
 export default function Page() {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
